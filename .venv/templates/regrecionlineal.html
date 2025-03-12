@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regrecion Linear</title>
+</head>
+<body>
+    <h1>
+        Regrecion linear : Calcular grado dependiendo de las horas del estudiante
+    </h1>
+    <form method="post">
+        <label for="horas">Horas estudidas</label>
+        <input type="number" id="horas" name="horas" required>
+        <button type="submit"> Predict  </button>
+    </form>
+    {%if result is not none %}
+
+    <h2>
+        Grado estimado : {{ resultado }}
+        
+    </h2>
+
+    {% endif %}
+
+    <!--Mostramos la grafica en html-->
+    {%if grafico_url %} <!--se usa para verificar si existe un valor en la variable-->
+        <!--Si grafico_url tiene un valor, se genera una etiqueta <img>-->
+        <!--src muestra la url de la imagen almacenada en grafico_url-->
+        <!--alt es el texto que se muestra si la imagen no se puede cargar-->
+        <img src="data:image/png;base64,{{grafico_url}}" alt="Grafico de regrecion lineal">
+    {% endif %}
+    <!--cierra la estructura-->
+</body>
+</html>
