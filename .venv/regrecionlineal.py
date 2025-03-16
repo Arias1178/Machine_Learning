@@ -1,3 +1,4 @@
+
 import numpy as np
 import pandas as pd 
 import matplotlib
@@ -9,13 +10,13 @@ from sklearn.linear_model import LinearRegression
 
 
 data = {
-    "Horas Estudiadas": [10, 15, 12, 8, 14, 5, 16, 7, 11, 13, 9, 4, 18, 3, 17, 6, 14, 2, 20, 1],
-    "Grado Final": [3.8, 4.2, 3.6, 3, 4.5, 2.5, 4.8, 2.8, 3.7, 4, 3.2, 2.2, 5, 1.8, 4.9, 2.7, 4.4, 1.5, 5, 1]
+    "Bienestar": [37.4540118847363, 95.0714306409916, 73.1993941811405, 59.86584841970366, 15.60186404424365, 15.59945203362027, 5.808361216819947, 86.61761457749351, 60.11150117432088, 70.80725777960456, 2.058449429580245, 96.99098521619943, 83.24426408004217, 21.23391106782762, 18.18249672071006, 18.34045098534338, 30.42422429595377, 52.47564316322379, 43.19450186421157, 29.12291401980419, 61.18528947223795, 13.94938606520418, 29.21446485352181, 36.63618432936917, 45.60699842170359, 78.51759613930136, 19.96737821583597, 51.42344384136116, 59.24145688620425, 4.645041271999773, 60.75448519014384, 17.05241236872915, 6.505159298527952, 94.88855372533332, 96.56320330745594, 80.83973481164611, 30.46137691733707, 9.767211400638388, 68.42330265121569, 44.01524937396013, 12.20382348447788, 49.51769101112702, 3.43885211152184, 90.9320402078782, 25.87799816000169, 66.2522284353982, 31.1711076089411, 52.00680211778108, 54.67102793432797, 18.4854455525527, 96.95846277645586, 77.51328233611146, 93.9498941564189, 89.48273504276489, 59.78999788110851, 92.18742350231169, 8.84925020519195, 19.59828624191452, 4.522728891053807, 32.53303307632643, 38.8677289689482, 27.13490317738959, 82.87375091519293, 35.67533266935893, 28.09345096873808, 54.26960831582485, 14.09242249747626, 80.21969807540397, 7.455064367977082, 98.68869366005173, 77.22447692966574, 19.87156815341724, 0.5522117123602399, 81.54614284548342, 70.68573438476172, 72.90071680409874, 77.12703466859458, 7.404465173409037, 35.84657285442726, 11.58690595251297, 86.31034258755935, 62.32981268275579, 33.08980248526492, 6.355835028602364, 31.09823217156622, 32.51833220267471, 72.96061783380641, 63.75574713552131, 88.72127425763266, 47.22149251619493, 11.95942459383017, 71.3244787222995, 76.07850486168974, 56.12771975694962, 77.0967179954561, 49.37955963643908, 52.27328293819941, 42.75410183585496, 2.541912674409519, 10.78914269933044],
+    "Tiempo_actividad": [123.8333413948823, 236.6492425145581, 203.9940738293846, 119.3503668026548, 72.81609288884744, 76.76992906312071, 56.55541735590403, 210.8065668645808, 150.8614063532183, 180.1436293708881, 45.35768469056551, 267.4099608430359, 203.7336017234414, 91.51002136186688, 80.77814216353927, 88.16576199502487, 97.53514830094943, 147.8809309305898, 127.5756609066321, 85.31681004306327, 182.5796469820735, 72.29093608488668, 104.3375529134669, 116.8180794423749, 111.9330396002677, 198.2063652953213, 80.9172635113583, 134.9789980074264, 166.1270929146794, 51.04489727699128, 224.0813389147359, 78.82517526733345, 55.04852923714336, 245.6466294734971, 170.9146614925002, 216.9043317351582, 107.8222950739441, 72.07382791658796, 184.7399979276151, 142.6735284698946, 66.66202048931203, 123.4760155228124, 49.29467405081579, 270.1354025525705, 105.93853819084, 159.2453665856836, 127.8161638042062, 122.3364166977731, 174.3932569057113, 98.48426142634094, 211.050631168282, 191.2151589870059, 250.8091506332333, 217.0389705286672, 130.7437635050259, 245.5934150628952, 55.33209025448886, 87.20013373995256, 48.12034867950451, 133.7592623643298, 112.1139619922391, 95.85157944411922, 251.986710237931, 99.1646745303549, 104.6172513200913, 190.605913421436, 61.0358630188673, 223.0002956157104, 57.25361651162035, 291.0642403233851, 167.8637857257159, 72.17205076208266, 41.3416835553011, 230.0574142780763, 203.2993749238012, 211.4943590044607, 186.6022285491664, 57.04649772279051, 123.4849435366605, 61.84925910853359, 300.7384340817682, 190.1205114715389, 95.45276660170879, 55.81893348944568, 95.07932495284206, 122.8019894369717, 237.7073729104887, 157.2404293764799, 272.7944647882064, 152.4638213745792, 70.63653536424665, 256.4404723110987, 199.1584558661343, 144.8665668956456, 179.4381766111631, 130.9099160480387, 153.2278642967009, 140.476708398919, 45.90167037757311, 67.66293710795898]
 }
 
 df = pd.DataFrame(data)
-x = df[["Horas Estudiadas"]]
-y = df[["Grado Final"]]
+x = df[["Tiempo_actividad"]]
+y = df[["Bienestar"]]
 
 #aqui se entrena al modelo
 model_regresion = LinearRegression()
@@ -23,46 +24,46 @@ model_regresion .fit(x,y)
 
 print("Columnas usadas en el entrenamiento:", model_regresion.feature_names_in_)
 
-def calculateGrade(horas):
-    horas = float(horas)  # Convertimos a float
-    horas_df = pd.DataFrame({"Horas Estudiadas": [horas]})  # Aseguramos que coincida
+def calculateBienestar(tiempo):
+    tiempo = float(tiempo)  # Convertimos a float
+    tiempo_df = pd.DataFrame({"Tiempo_actividad": [tiempo]})  # Aseguramos que coincida
 
-    print("Datos enviados a la predicción:\n", horas_df)  # 🔍 Depuración
+    print("Datos enviados a la predicción:\n", tiempo_df)  # 🔍 Depuración
 
-    resultado = model_regresion.predict(horas_df)[0][0]  # Extraemos el valor de la predicción
+    
+    resultado = model_regresion.predict(tiempo_df)[0][0]  # Extraemos el valor de la predicción
+    print(f"Resultado predicho: {resultado}")  # 🔍 Depuración
     return resultado
 
-def grafica_regresion(nueva_hora=None):
+def grafica_regresion(nuevo_tiempo=None):
     #plitfigure crea el tamaño de la grafica
     plit.figure(figsize=(8,6))
     #puntos datos reales
     #crear el grafico de dispersion plit.scatter
-    plit.scatter(df["Horas Estudiadas"],df["Grado Final"],color="blue", label="Datos reales")
+    plit.scatter(df["Tiempo_actividad"],df["Bienestar"],color="blue", label="Datos reales")
     # Si se ha introducido una nueva hora, la agregamos como un punto verde
-    if nueva_hora is not None:
-        nuevo_grado = calculateGrade(nueva_hora)
-        plit.scatter([nueva_hora], [nuevo_grado], color="green", s=100, label="Nueva predicción", marker= "x")
+    if nuevo_tiempo is not None:
+        nuevo_tiempo = float(nuevo_tiempo)
+        nuevo_bienestar = calculateBienestar(nuevo_tiempo)
+        print(f"Nuevo tiempo: {nuevo_tiempo}, Predicción bienestar: {nuevo_bienestar}")
+        plit.scatter([nuevo_tiempo], [nuevo_bienestar], color="green", s=100, label="Nueva predicción", marker= "x")
     #lienas de regresion
     #creamo los valores que van a aparecer en x con un maximo de 100 valores desde 0 y el reshape cambia la forma de los datos para que se lean correctamente y el np.linspace genera mas puntos intermedios para que la linea se vea mas fluida
-    x_linea = np.linspace(min(df["Horas Estudiadas"]),max(df["Horas Estudiadas"]),100).reshape(-1,1)
+    x_linea = np.linspace(min(df["Tiempo_actividad"]),max(df["Tiempo_actividad"]),100).reshape(-1,1)
     y_linea = model_regresion.predict(x_linea)
     #dibuja una linea de regresion en el grafico, la linea que aparece va a ser roja y laber agrega una etiqueta
     plit.plot (x_linea, y_linea, color="red", label="regresion lineal")
     #etiquetas y titulos
-    plit.xlabel("Horas Estudiadas")#label para nombrar los ejes
-    plit.ylabel("Grado Final")
-    plit.title("Regresion Lineal: Horas Estudiadas vs Grado Final")#nombre para la grafica
+    plit.xlabel("Tiempo actividad")#label para nombrar los ejes
+    plit.ylabel("Bienestar")
+    plit.title("Regresion Lineal: Tiempo de actividad vs Bienestar")#nombre para la grafica
     plit.legend()#muestra las leyendas de los graficos que fue la de plitplot y scartter
     
     #Guardamos la imagen en base64 para usarla en html
     img = io.BytesIO()
     plit.savefig(img, format='png')#guarda la figura creada como imagen.png
-    img.seek(0)#reubica el puntero
+    img.seek(40)#reubica el puntero
     grafico_url = base64.b64encode(img.getvalue()).decode()#se guarda como base64 para importarla a html
     plit.close()
 
     return grafico_url # devuelve la grafica
-
-
-
-

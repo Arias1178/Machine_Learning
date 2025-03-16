@@ -7,17 +7,18 @@
 </head>
 <body>
     <h1>
-        Regrecion linear : Calcular grado dependiendo de las horas del estudiante
+        Regrecion linear : Calcular Bienestar dependiendo de el tiempo de actividad
+        <p>Se recomienda usar valores por encima de 40 como tiempo de actividad para un calculo mas preciso</p>
     </h1>
     <form method="post">
-        <label for="horas">Horas estudidas</label>
-        <input type="number" id="horas" name="horas" required>
+        <label for="tiempo">Tiempo de actividad</label>
+        <input type="number" id="tiempo" name="Tiempo_actividad" required>
         <button type="submit"> Predict  </button>
     </form>
-    {%if result is not none %}
+    {% if resultado is not none %}
 
     <h2>
-        Grado estimado : {{ resultado }}
+        Bienestar : {{ resultado }}
         
     </h2>
 
