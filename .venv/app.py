@@ -2,7 +2,6 @@ import re
 from datetime import datetime
 from flask import Flask, render_template,request
 import regrecionlineal
-import regrecionlogistica
 
 
 app = Flask(__name__)
