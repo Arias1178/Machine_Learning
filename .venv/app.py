@@ -24,9 +24,9 @@ def hello_there(name):
     return render_template("index.html", name=clean_name, formatted_now=formatted_now)
 
 
-@app.route("/exampleHTML/")
+@app.route("/regresionlogistica/")
 def exampleHTML():
-    return render_template("example.html")
+    return render_template("regresionlogistica.html")
 
 
 
