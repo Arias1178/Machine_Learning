@@ -28,10 +28,6 @@ def hello_there(name):
 def exampleHTML():
     return render_template("example.html")
 
-@app.route("/regresionlogistica/")
-def regrecionlogistica():
-    return render_template("regrecionlogistica.html")
-
 
 
 @app.route("/regrecionlineal", methods=["GET","POST"])
