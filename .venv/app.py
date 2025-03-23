@@ -2,6 +2,7 @@ import re
 from datetime import datetime
 from flask import Flask, render_template,request
 import regrecionlineal
+import regrecionlogistica
 
 
 app = Flask(__name__)
@@ -27,6 +28,10 @@ def hello_there(name):
 @app.route("/exampleHTML/")
 def exampleHTML():
     return render_template("example.html")
+
+@app.route("/regresionlogistica/")
+def regrecionlogistica():
+    return render_template("regrecionlogistica.html")
 
 
 
