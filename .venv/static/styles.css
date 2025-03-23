@@ -1,99 +1,101 @@
+/* Importar Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Estilo general */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #00456d;
-
+    background: linear-gradient(135deg, #240046, #5a189a, #9d4edd);
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
 }
+
+/* Contenedor principal */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(147, 51, 234, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Títulos */
 h1 {
-    text-align: center;
-    font-size: 3rem;
-    color: #000000;
-}
-.seccion1 h2{
-    text-align: center;
-    font-size: 2rem;
-    color: #000000 ;
-
-}
-.seccion1 p {
-    font-size: 1.5rem;
-}
-.seccion2 h2{
-    text-align: center;
-    font-size: 2rem;
-    color: #000000 ;
-
-}
-.seccion2 p {
-    font-size: 1.5rem;
-}
-.seccion3 h2{
-    text-align: center;
-    font-size: 2rem;
-    color: #000000 ;
-
-}
-.seccion3 p {
-    font-size: 2rem;
-}
-.sombra{
-    -webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,112,1);
-    -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,112,1);
-    box-shadow: 0px 5px 15px 0px rgba(112,112,112,1);
-    background-color: var(--blanco);
-    padding: 1rem;
-    box-sizing: border-box;
-    border-radius: 1rem;
-    overflow: hidden;
-    
-}
-.boton{   /*Boton contactar y enviar*/
-    background-color: blanchedalmond;
-    color: black;
-    padding: 0.5rem 1.5rem; /* Reduce el espacio interno */
-    font-size: 1rem;
-    text-decoration: none;
+    font-size: 36px;
+    color: #e0aaff;
+    margin-bottom: 20px;
     text-transform: uppercase;
-    font-weight: bold;
-    border-radius: 0.5rem;
-    width: auto !important; 
-    max-width: 100px !important;    
-    text-align: center;
+    letter-spacing: 3px;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+}
+
+p {
+    font-size: 18px;
+    color: #d8b4fe;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* Estilos para el iframe */
+iframe {
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 850px;
+    height: 450px;
     border: none;
-    display: inline-block; /* Evita que ocupe toda la línea */
-}
-img {
-    width: 20rem; /* Se ajusta en función del tamaño de fuente base */
-    
-    height: auto;
-}
-.img-centrada {
-    display: block;  /* Asegura que la imagen se comporte como un bloque */
-    margin: 50px auto;  /* Centra horizontalmente */
-}
-.contenedor {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
-    grid-template-rows: repeat(2, auto); /* 2 filas */
-    gap: 20px; /* Espacio entre los cuadrados */
-    width: 1700px; /* Ajusta el ancho del contenedor */
-    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(173, 20, 255, 0.6);
 }
 
-.cuadro {
-    background-color: rgb(0, 99, 133);
-    padding: 40px;
-    text-align: center;
-    font-size: 1.5rem;
-    border-radius: 50px;
-    border: 2px solid #000;
-    
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-footer {
-    margin: 50px at;
-    background-color: #00456d; /* Color de fondo */
-    color: rgb(0, 0, 0); /* Color del texto */
-    text-align: center; /* Centra el texto */
-    padding: 20px; /* Espaciado interno */
-    font-size: 1rem; /* Tamaño del texto */
+/* Estilo de bordes brillantes */
+.container::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, #ff00ff, #00ffff);
+    z-index: -1;
+    border-radius: 15px;
+    filter: blur(8px);
+}
+
+/* Estilos Responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    p {
+        font-size: 16px;
+    }
+
+    iframe {
+        height: 350px;
+    }
 }
