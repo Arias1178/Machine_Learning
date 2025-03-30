@@ -53,3 +53,4 @@ print (not (3 > 4)) #negar una condicion si algo es verdadero dentro de la condi
 
 #strings
 
+
