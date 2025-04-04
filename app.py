@@ -18,7 +18,7 @@ def hello_there(name):
     if match_object:
         clean_name = match_object.group(0)
     else:
-        clean_name = "Friend"
+        clean_name = "Friends"
 
     return render_template("index.html", name=clean_name, formatted_now=formatted_now)
 
