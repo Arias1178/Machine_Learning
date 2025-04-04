@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
 @app.route("/exampleHTML/")
 def exampleHTML():
-    return render_template("example.html")
+    return render_template("CasosDeUso.html")
 
 
 @app.route("/regrecionlineal", methods=["GET","POST"])
