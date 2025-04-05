@@ -44,10 +44,10 @@ def regrecionlineal_endpoint():
     calcularResultado = None
     grafico_url = None
     if request.method=="POST":
-       horas=float(request.form["horas"])
+       horas=float(request.form["Tiempo_actividad"])
        print(f"Valor recibido: {horas}")
-       calcularResultado = regrecionlineal.calculateGrade (horas)
-       grafico_url = regrecionlineal.grafica_regresion(nueva_hora=horas)
+       calcularResultado = regrecionlineal.calculateBienestar(horas)
+       grafico_url = regrecionlineal.grafica_regresion(nuevo_tiempo=horas)
     return render_template("regrecionlineal.html", resultado=calcularResultado, grafico_url=grafico_url)
 
 if __name__ == "__main__":
