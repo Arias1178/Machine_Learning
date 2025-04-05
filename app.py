@@ -5,10 +5,12 @@ import regrecionlineal
 
 app = Flask(__name__)
 
+#Salida Basica
 @app.route("/")
 def home():
     return "Hello, Bebes"
 
+#Ejemplo clase
 @app.route("/hello/<name>")
 def hello_there(name):
     now = datetime.now()
@@ -18,19 +20,24 @@ def hello_there(name):
     if match_object:
         clean_name = match_object.group(0)
     else:
-        clean_name = "Friend"
+        clean_name = "Friends"
 
     return render_template("index.html", name=clean_name, formatted_now=formatted_now)
 
 if __name__ == "__main__":
     app.run(debug=True)
 
-
+#Pagina casos de uso
 @app.route("/exampleHTML/")
 def exampleHTML():
-    return render_template("CasosDeUso.html")
+    return render_template("casosdeuso.html")
 
+#Mapa conceptual
+@app.route("/mapa/")
+def mapaHTML():
+    return render_template("mapaconceptual.html")
 
+#Rgresion Lineal
 @app.route("/regrecionlineal", methods=["GET","POST"])
 
 def regrecionlineal_endpoint():
