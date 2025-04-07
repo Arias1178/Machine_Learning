@@ -31,8 +31,12 @@ def exampleHTML():
     return render_template("example.html")
 
 
-@app.route("/regrecionlineal", methods=["GET","POST"])
+<<<<<<< Updated upstream
+=======
 
+#Rgresion Lineal
+>>>>>>> Stashed changes
+@app.route("/regrecionlineal", methods=["GET","POST"])
 def regrecionlineal_endpoint():
     calcularResultado = None
     grafico_url = None
@@ -45,3 +49,8 @@ def regrecionlineal_endpoint():
 
 if __name__ == "__main__":
     app.run(debug=True)#ejecutamo la aplicacion sin importar los errores del .py
+
+#Regresion Logistica
+@app.route("/RegresionLogistica/")
+def regresion_logistica():
+    return render_template("menu_regresion_logistica.html")
