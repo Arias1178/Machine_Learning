@@ -1,6 +1,6 @@
 
         
-<h2> Hola a todos este es nuestro repositorio para la clase MACHINE LEARNING de la universidad de cundinamraca colombia extension chia. <img src="https://github.com/souvikguria98/souvikguria98/blob/master/Hi.gif" width="25"></h2>
+<h2> Hola a todos este es nuestro repositorio para la clase MACHINE LEARNING de la universidad de cundinamarca Colombia extension chia. <img src="https://github.com/souvikguria98/souvikguria98/blob/master/Hi.gif" width="25"></h2>
 <img align="right" alt="GIF" src="https://raw.githubusercontent.com/devSouvik/devSouvik/master/gif3.gif" width="500"/>
 
 <h3> 👨🏻‍💻 Nosotros Somos </h3>
