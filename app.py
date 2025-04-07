@@ -26,13 +26,14 @@ def hello_there(name):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-@app.route("/menu", methods=["GET", "POST"])
-def menu():
+    
+@app.route("/menuformulario", methods=["GET", "POST"])
+def menu_formulario():
     seccion = None
     if request.method == "POST":
         seccion = request.form.get("seccion")
     return render_template("menu.html", seccion=seccion)
+
 
 #Pagina casos de uso
 @app.route("/exampleHTML/")
