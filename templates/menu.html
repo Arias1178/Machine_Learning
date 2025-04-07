@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='menu.css') }}">
+</head>
+<body>
+
+    <div class="titulo-menu">Menú de Navegación</div>
+
+    <nav>
+        <ul class="menuItems">
+            <li><a href="{{ url_for('exampleHTML') }}" data-item="Casos de uso">Casos de uso</a></li>
+            <li><a href="{{ url_for('mapaHTML') }}" data-item="Mapa Conceptual">Mapa Conceptual</a></li>
+            <li><a href="{{ url_for('regrecionlineal_endpoint') }}" data-item="Regresión Lineal">Regresión Lineal</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>
