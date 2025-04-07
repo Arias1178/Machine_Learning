@@ -1,0 +1,107 @@
+/* Importar Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Estilo general */
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Menú de navegación */
+.navbar {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 15px 0;
+    box-shadow: 0px 4px 10px rgba(0, 238, 255, 0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    color: #00eaff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #fff;
+    text-shadow: 0px 0px 10px rgba(0, 238, 255, 0.9);
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 900px;
+    margin: 100px auto 50px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 20px rgba(0, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+/* Títulos */
+h1 {
+    font-size: 40px;
+    color: #00eaff;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0px 0px 15px rgba(0, 238, 255, 0.9);
+}
+
+p {
+    font-size: 20px;
+    color: #b8e4ff;
+    line-height: 1.7;
+    text-align: justify;
+    padding: 0 15px;
+}
+
+a {
+    display: inline-block;
+    font-size: 20px;
+    color: #00eaff;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #fff;
+    text-shadow: 0px 0px 10px rgba(0, 238, 255, 0.9);
+}
+
+/* Estilos para el iframe */
+iframe {
+    display: block;
+    margin: 30px auto;
+    width: 100%;
+    max-width: 850px;
+    height: 500px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 238, 255, 0.7);
+}

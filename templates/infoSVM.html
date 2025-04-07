@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ modelo.nombre }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='modelos.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ modelo.nombre }}</h1>
+        <p>{{ modelo.descripcion }}</p>
+            <iframe src="{{ modelo.imagen }}"></iframe>
+            <a href="{{ modelo.enlace }}" target="_blank">Más información sobre Support Vector Machine (SVM)</a>
+    </div>
+</body>
+</html>
