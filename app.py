@@ -1,8 +1,11 @@
-import re
+import re #para trabajar con expresiones regulares
 from datetime import datetime
-from flask import Flask, render_template,request
+from flask import Flask 
+from flask import Flask, render_template, request
+import joblib
+import pandas as pd
 import regrecionlineal
-import RegresionLogistica
+
 
 app = Flask(__name__)
 
