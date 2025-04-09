@@ -15,8 +15,27 @@
             <li><a href="{{ url_for('exampleHTML') }}" data-item="Casos de uso">Casos de uso</a></li>
             <li><a href="{{ url_for('mapaHTML') }}" data-item="Mapa Conceptual">Mapa Conceptual</a></li>
             <li><a href="{{ url_for('regrecionlineal_endpoint') }}" data-item="Regresión Lineal">Regresión Lineal</a></li>
+            <li>
+                <a href="{{ url_for('index') }}" data-item="Regresión Logistica">Regresión Logistica</a>
+                <select id="opciones" onchange="redirigir()">
+                    <option disabled selected>Selecciona una opción</option>
+                    <option value="{{ url_for('exampleHTML') }}">Opción 1 - Casos de Uso</option>
+                    <option value="{{ url_for('mapaHTML') }}">Opción 2 - Mapa Conceptual</option>
+                    <option value="{{ url_for('regrecionlineal_endpoint') }}">Opción 3 - Regresión Lineal</option>
+                </select>
+            </li>
         </ul>
     </nav>
+
+    <script>
+        function redirigir() {
+            const select = document.getElementById('opciones');
+            const ruta = select.value;
+            if (ruta) {
+                window.location.href = ruta;
+            }
+        }
+    </script>
 
 </body>
 </html>
