@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detección de Fraude en Seguros</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Inicio</a>
+        <a href="#about">Acerca del Modelo</a>
+    </nav>
+    
+    <div class="container">
+        <h1>Detección de Fraude en Reclamos de Seguros</h1>
+        <p>Este modelo predice si un reclamo es potencialmente fraudulento basado en:</p>
+        <ul>
+            <li>Monto del reclamo</li>
+            <li>Tiempo desde activación de póliza</li>
+            <li>Historial de reclamos</li>
+        </ul>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="monto">Monto del reclamo:</label>
+                <input type="number" id="monto" name="monto" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="tiempo">Tiempo desde activación (días):</label>
+                <input type="number" id="tiempo" name="tiempo" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="historial">Historial de reclamos previos:</label>
+                <input type="number" id="historial" name="historial" required>
+            </div>
+            
+            <button type="submit">Predecir</button>
+        </form>
+        
+        {% if prediction %}
+        <div class="result">
+            <h2>Resultado:</h2>
+            <p>El reclamo es clasificado como: <strong>{{ prediction }}</strong></p>
+        </div>
+        {% endif %}
+        
+        <div class="metrics">
+            <h2>Métricas del Modelo</h2>
+            <img src="/static/confusion_matrix.png" alt="Matriz de Confusión">
+            <p>Accuracy: 0.85 | Precision: 0.83 | Recall: 0.80</p>
+        </div>
+    </div>
+</body>
+</html>
