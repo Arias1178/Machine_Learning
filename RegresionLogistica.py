@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
 import matplotlib.pyplot as plt
-import seaborn as sns #importar modelos estadisticos
+import seaborn as sns
 import joblib
 
 # Configuración para reproducibilidad
@@ -25,15 +25,15 @@ df = pd.DataFrame(data)
 
 # Generar variable objetivo (Fraude) de manera realista
 def generar_fraude(row):
-    prob = 0.05  # Probabilidad base
+    prob = 0.01  # Probabilidad base
     
     # Factores que aumentan probabilidad de fraude
     if row['Monto'] > 8000:
-        prob += 0.15
-    if row['Tiempo_Activacion'] < 30:
         prob += 0.20
+    if row['Tiempo_Activacion'] < 30:
+        prob += 0.30
     if row['Historial'] > 2:
-        prob += 0.10
+        prob += 0.20
     
     return 1 if np.random.random() < prob else 0
 
@@ -90,3 +90,7 @@ plt.close()
 
 # Guardar modelo
 joblib.dump(model, 'modelo_fraude.pkl')
+
+
+
+
