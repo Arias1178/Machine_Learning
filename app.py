@@ -416,10 +416,6 @@ def infoNaiveBayes ():
  #   app.run(debug=True)#ejecutamo la aplicacion sin importar los errores del .py
 
 #Regresión Logística
-import joblib
-from sklearn.preprocessing import StandardScaler
-
-
 # Cargar modelo
 model = joblib.load('modelo_fraude.pkl')
 
