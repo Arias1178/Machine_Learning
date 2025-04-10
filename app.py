@@ -1,9 +1,12 @@
 import re #para trabajar con expresiones regulares
 from datetime import datetime
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 from flask import Flask, render_template, request
 from flask import Flask, render_template, request
 =======
+=======
+>>>>>>> Stashed changes
 from flask import Flask 
 from flask import Flask, render_template, request, send_file
 import joblib
@@ -11,8 +14,12 @@ import pandas as pd
 >>>>>>> 3a13c5c01b5b29c8d8b17bbb50a9738a17713c06
 import regrecionlineal
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import pyodbc
 import pyodbc
+=======
+import os
+>>>>>>> Stashed changes
 =======
 import os
 >>>>>>> Stashed changes
@@ -462,10 +469,13 @@ def index():
     return render_template('RegresionLogistica.html', prediction=prediction)
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 if __name__ == '__main__':
     app.run(debug=True) 
 >>>>>>> 3a13c5c01b5b29c8d8b17bbb50a9738a17713c06
 =======
+=======
+>>>>>>> Stashed changes
 #if __name__ == '__main__':
  #   app.run(debug=True) 
 
@@ -501,5 +511,9 @@ def resultado():
     return render_template("XGBoost.html", tabla=tabla)
 
 if __name__ == "__main__":
+<<<<<<< Updated upstream
+    app.run(debug=True)
+>>>>>>> Stashed changes
+=======
     app.run(debug=True)
 >>>>>>> Stashed changes
