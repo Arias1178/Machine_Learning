@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, send_file
 import joblib
 import pandas as pd
 import regrecionlineal
-import pyodbc
+#import pyodbc
 import os
 
 
@@ -70,8 +70,8 @@ def regrecionlineal_endpoint():
        grafico_url = regrecionlineal.grafica_regresion(nuevo_tiempo=horas)
     return render_template("regrecionlineal.html", resultado=calcularResultado, grafico_url=grafico_url)
 
-#Info Regresion Logistica 6
-@app.route('/infoRegresionLogistica/')
+#Info Regresion Logistica 7
+'''@app.route('/infoRegresionLogistica/')
 def infoRegresionLogistica():
     try:
         conn = pyodbc.connect(connection_string)
@@ -404,7 +404,7 @@ def infoNaiveBayes ():
         else:
             return "No se encontró ningún modelo en la base de datos."
     except Exception as e:
-        return f"Error: {e}"
+        return f"Error: {e}" '''
 
 
 #if __name__ == "__main__":
