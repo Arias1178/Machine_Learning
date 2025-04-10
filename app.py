@@ -1,22 +1,16 @@
 import re #para trabajar con expresiones regulares
 from datetime import datetime
-<<<<<<< HEAD
-from flask import Flask, render_template, request
-from flask import Flask, render_template, request
-=======
-from flask import Flask 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import joblib
 import pandas as pd
->>>>>>> 3a13c5c01b5b29c8d8b17bbb50a9738a17713c06
 import regrecionlineal
 import pyodbc
-import pyodbc
+import os
 
 
 app = Flask(__name__)
 
-<<<<<<< HEAD
+
 # Configuración de conexión
 server = 'ModelosClasificacion.mssql.somee.com'
 database = 'ModelosClasificacion'
@@ -30,8 +24,7 @@ connection_string = f'DRIVER={driver};SERVER={server};DATABASE={database};UID={u
 @app.route("/")
 def home():
     return "Hello, Bebes"
-=======
->>>>>>> 3a13c5c01b5b29c8d8b17bbb50a9738a17713c06
+
 
 #Ejemplo clase
 @app.route("/hello/<name>")
@@ -47,11 +40,11 @@ def hello_there(name):
 
     return render_template("index.html", name=clean_name, formatted_now=formatted_now)
 
-<<<<<<< HEAD
-=======
+
 if __name__ == "__main__":
     app.run(debug=True)
 
+#Menu
 @app.route("/", methods=["GET", "POST"])
 def menu_formulario():
     seccion = None
@@ -59,7 +52,7 @@ def menu_formulario():
         seccion = request.form.get("seccion")
     return render_template("menu.html", seccion=seccion)
 
->>>>>>> 3a13c5c01b5b29c8d8b17bbb50a9738a17713c06
+
 #Pagina casos de uso
 @app.route("/exampleHTML/")
 def exampleHTML():
@@ -82,7 +75,6 @@ def regrecionlineal_endpoint():
        grafico_url = regrecionlineal.grafica_regresion(nuevo_tiempo=horas)
     return render_template("regrecionlineal.html", resultado=calcularResultado, grafico_url=grafico_url)
 
-<<<<<<< HEAD
 #Info Regresion Logistica
 @app.route('/infoRegresionLogistica/')
 def infoRegresionLogistica():
@@ -419,18 +411,11 @@ def infoNaiveBayes ():
     except Exception as e:
         return f"Error: {e}"
 
-if __name__ == "__main__":
-    app.run(debug=True)#ejecutamo la aplicacion sin importar los errores del .py
-=======
+
 #if __name__ == "__main__":
  #   app.run(debug=True)#ejecutamo la aplicacion sin importar los errores del .py
 
 #Regresión Logística
-
-import joblib
-from sklearn.preprocessing import StandardScaler
-
-
 # Cargar modelo
 model = joblib.load('modelo_fraude.pkl')
 
@@ -457,6 +442,42 @@ def index():
     
     return render_template('RegresionLogistica.html', prediction=prediction)
 
-if __name__ == '__main__':
-    app.run(debug=True) 
->>>>>>> 3a13c5c01b5b29c8d8b17bbb50a9738a17713c06
+
+#if __name__ == '__main__':
+ #   app.run(debug=True) 
+
+#XGBoost
+@app.route("/XGBoost", methods=["GET", "POST"])
+def resultado():
+    tabla = None
+
+    if request.method == "POST":
+        if "archivo" in request.files:
+            archivo = request.files["archivo"]
+            df = pd.read_excel(archivo)
+
+            columnas = ["glucosa", "edad", "IMC"]
+            if not all(col in df.columns for col in columnas):
+                return "El archivo debe contener las columnas: glucosa, edad, IMC"
+
+            predicciones = modelo.predict(df[columnas])
+            df["Resultado"] = ["Diabetes" if x == 1 else "No Diabetes" for x in predicciones]
+
+            df.to_excel("datos/resultados.xlsx", index=False)
+            df.to_csv("datos/resultados.csv", index=False)
+
+            tabla = df.to_html(classes="table", index=False)
+
+        elif "formato" in request.form:
+            formato = request.form["formato"]
+            if formato == "excel":
+                return send_file("datos/resultados.xlsx", as_attachment=True)
+            elif formato == "csv":
+                return send_file("datos/resultados.csv", as_attachment=True)
+
+    return render_template("XGBoost.html", tabla=tabla)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+ 
