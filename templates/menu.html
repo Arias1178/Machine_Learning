@@ -16,8 +16,8 @@
             <li><a href="{{ url_for('mapaHTML') }}" data-item="Mapa Conceptual">Mapa Conceptual</a></li>
             <li><a href="{{ url_for('regrecionlineal_endpoint') }}" data-item="Regresión Lineal">Regresión Lineal</a></li>
             <li>
-                <select id="opciones" onchange="redirigir()">
-                    <option disabled selected>Selecciona una opción</option>
+                <select id="opciones" class="menu-select" onchange="redirigir()">
+                    <option disabled selected>Modelos Clasificación</option>
                     <option value="{{ url_for('infoRegresionLogistica') }}">Regresion Logistica</option>
                     <option value="{{ url_for('infoKNN') }}">KNN</option>
                     <option value="{{ url_for('infoArbolesDecision') }}">Arbol Decisiones</option>
