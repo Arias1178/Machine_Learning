@@ -20,11 +20,6 @@ driver = '{ODBC Driver 17 for SQL Server}'
 connection_string = f'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 
 
-#Salida Basica
-@app.route("/")
-def home():
-    return "Hello, Bebes"
-
 
 #Ejemplo clase
 @app.route("/hello/<name>")
@@ -53,17 +48,17 @@ def menu_formulario():
     return render_template("menu.html", seccion=seccion)
 
 
-#Pagina casos de uso
+#Pagina casos de uso 3
 @app.route("/exampleHTML/")
 def exampleHTML():
     return render_template("casosdeuso.html")
 
-#Mapa conceptual
+#Mapa conceptual 4
 @app.route("/mapa/")
 def mapaHTML():
     return render_template("mapaconceptual.html")
 
-#Rgresion Lineal
+#Rgresion Lineal 5
 @app.route("/regrecionlineal", methods=["GET","POST"])
 def regrecionlineal_endpoint():
     calcularResultado = None
@@ -75,7 +70,7 @@ def regrecionlineal_endpoint():
        grafico_url = regrecionlineal.grafica_regresion(nuevo_tiempo=horas)
     return render_template("regrecionlineal.html", resultado=calcularResultado, grafico_url=grafico_url)
 
-#Info Regresion Logistica
+#Info Regresion Logistica 6
 @app.route('/infoRegresionLogistica/')
 def infoRegresionLogistica():
     try:
@@ -96,7 +91,7 @@ def infoRegresionLogistica():
     except Exception as e:
         return f"Error: {e}"
 
-#Info KNN
+#Info KNN 7
 @app.route('/infoKNN/')
 def infoKNN():
     try:
@@ -446,7 +441,9 @@ def index():
 #if __name__ == '__main__':
  #   app.run(debug=True) 
 
-#XGBoost
+#XGBoost 8
+# Carga del modelo entrenado
+modelo = joblib.load("modelo_diabetes.pkl")
 @app.route("/XGBoost", methods=["GET", "POST"])
 def resultado():
     tabla = None
