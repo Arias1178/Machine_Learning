@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicción Diabetes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='XGBoost.css') }}">
+</head>
+<body>
+    <h1>Predicción de Diabetes con XGBoost</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label for="archivo">Sube tu archivo Excel:</label>
+        <input type="file" name="archivo" accept=".xlsx" required>
+        <button type="submit">Predecir</button>
+    </form>
+
+    {% if tabla %}
+        <h2>Resultados</h2>
+        <div>{{ tabla|safe }}</div>
+
+        <form method="POST">
+            <button type="submit" name="formato" value="excel">📥 Exportar a Excel</button>
+            <button type="submit" name="formato" value="csv">📥 Exportar a CSV</button>
+        </form>
+    {% endif %}
+</body>
+</html>

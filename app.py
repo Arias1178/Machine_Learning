@@ -5,13 +5,17 @@ from flask import Flask, render_template, request
 from flask import Flask, render_template, request
 =======
 from flask import Flask 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import joblib
 import pandas as pd
 >>>>>>> 3a13c5c01b5b29c8d8b17bbb50a9738a17713c06
 import regrecionlineal
+<<<<<<< Updated upstream
 import pyodbc
 import pyodbc
+=======
+import os
+>>>>>>> Stashed changes
 
 
 app = Flask(__name__)
@@ -52,6 +56,7 @@ def hello_there(name):
 if __name__ == "__main__":
     app.run(debug=True)
 
+#Menu
 @app.route("/", methods=["GET", "POST"])
 def menu_formulario():
     seccion = None
@@ -426,7 +431,6 @@ if __name__ == "__main__":
  #   app.run(debug=True)#ejecutamo la aplicacion sin importar los errores del .py
 
 #Regresión Logística
-
 import joblib
 from sklearn.preprocessing import StandardScaler
 
@@ -457,6 +461,45 @@ def index():
     
     return render_template('RegresionLogistica.html', prediction=prediction)
 
+<<<<<<< Updated upstream
 if __name__ == '__main__':
     app.run(debug=True) 
 >>>>>>> 3a13c5c01b5b29c8d8b17bbb50a9738a17713c06
+=======
+#if __name__ == '__main__':
+ #   app.run(debug=True) 
+
+#XGBoost
+@app.route("/XGBoost", methods=["GET", "POST"])
+def resultado():
+    tabla = None
+
+    if request.method == "POST":
+        if "archivo" in request.files:
+            archivo = request.files["archivo"]
+            df = pd.read_excel(archivo)
+
+            columnas = ["glucosa", "edad", "IMC"]
+            if not all(col in df.columns for col in columnas):
+                return "El archivo debe contener las columnas: glucosa, edad, IMC"
+
+            predicciones = modelo.predict(df[columnas])
+            df["Resultado"] = ["Diabetes" if x == 1 else "No Diabetes" for x in predicciones]
+
+            df.to_excel("datos/resultados.xlsx", index=False)
+            df.to_csv("datos/resultados.csv", index=False)
+
+            tabla = df.to_html(classes="table", index=False)
+
+        elif "formato" in request.form:
+            formato = request.form["formato"]
+            if formato == "excel":
+                return send_file("datos/resultados.xlsx", as_attachment=True)
+            elif formato == "csv":
+                return send_file("datos/resultados.csv", as_attachment=True)
+
+    return render_template("XGBoost.html", tabla=tabla)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+>>>>>>> Stashed changes
