@@ -411,7 +411,7 @@ def infoNaiveBayes ():
  #   app.run(debug=True)#ejecutamo la aplicacion sin importar los errores del .py
 
 #Regresión Logística
-# Cargar modelo
+# Cargar modelo 6
 model = joblib.load('modelo_fraude.pkl')
 
 @app.route('/Sigmoid', methods=['GET', 'POST'])
