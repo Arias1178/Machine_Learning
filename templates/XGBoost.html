@@ -2,26 +2,36 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Predicción Diabetes</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='XGBoost.css') }}">
+    <title>Predicción de Diabetes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
 </head>
 <body>
-    <h1>Predicción de Diabetes con XGBoost</h1>
+    <div class="contenedor">
+        <h1>Predicción de Diabetes</h1>
 
-    <form method="POST" enctype="multipart/form-data">
-        <label for="archivo">Sube tu archivo Excel:</label>
-        <input type="file" name="archivo" accept=".xlsx" required>
-        <button type="submit">Predecir</button>
-    </form>
+        {% if resultado is not defined %}
+            <!-- Formulario de ingreso -->
+            <form action="{{ url_for('predecir') }}" method="post">
+                <label for="glucosa">Glucosa:</label>
+                <input type="number" step="0.01" name="glucosa" required>
 
-    {% if tabla %}
-        <h2>Resultados</h2>
-        <div>{{ tabla|safe }}</div>
+                <label for="edad">Edad:</label>
+                <input type="number" name="edad" required>
 
-        <form method="POST">
-            <button type="submit" name="formato" value="excel">📥 Exportar a Excel</button>
-            <button type="submit" name="formato" value="csv">📥 Exportar a CSV</button>
-        </form>
-    {% endif %}
+                <label for="imc">IMC (Índice de Masa Corporal):</label>
+                <input type="number" step="0.01" name="imc" required>
+
+                <button type="submit">Predecir</button>
+            </form>
+        {% else %}
+            <!-- Resultado de la predicción -->
+            <p><strong>Glucosa:</strong> {{ datos.Glucosa }}</p>
+            <p><strong>Edad:</strong> {{ datos.Edad }}</p>
+            <p><strong>IMC:</strong> {{ datos.IMC }}</p>
+            <h2>Resultado: <span class="resultado">{{ resultado }}</span></h2>
+            <a href="{{ url_for('index') }}">Realizar otra predicción</a>
+        {% endif %}
+    </div>
 </body>
 </html>
+

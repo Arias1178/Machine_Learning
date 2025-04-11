@@ -443,38 +443,23 @@ def index():
 
 #XGBoost 8
 # Carga del modelo entrenado
-modelo = joblib.load("modelo_diabetes.pkl")
-@app.route("/XGBoost", methods=["GET", "POST"])
-def resultado():
-    tabla = None
+@app.route("/")
+def index():
+    return render_template("diabetes.html")
 
-    if request.method == "POST":
-        if "archivo" in request.files:
-            archivo = request.files["archivo"]
-            df = pd.read_excel(archivo)
+@app.route("/predecir", methods=["POST"])
+def predecir():
+    glucosa = float(request.form["glucosa"])
+    edad = int(request.form["edad"])
+    imc = float(request.form["imc"])
 
-            columnas = ["glucosa", "edad", "IMC"]
-            if not all(col in df.columns for col in columnas):
-                return "El archivo debe contener las columnas: glucosa, edad, IMC"
+    datos_nuevos = pd.DataFrame([{
+        "Glucosa": glucosa,
+        "Edad": edad,
+        "IMC": imc
+    }])
 
-            predicciones = modelo.predict(df[columnas])
-            df["Resultado"] = ["Diabetes" if x == 1 else "No Diabetes" for x in predicciones]
+    prediccion = modelo.predict(datos_nuevos)[0]
+    resultado = "Diabetes" if prediccion == 1 else "No Diabetes"
 
-            df.to_excel("datos/resultados.xlsx", index=False)
-            df.to_csv("datos/resultados.csv", index=False)
-
-            tabla = df.to_html(classes="table", index=False)
-
-        elif "formato" in request.form:
-            formato = request.form["formato"]
-            if formato == "excel":
-                return send_file("datos/resultados.xlsx", as_attachment=True)
-            elif formato == "csv":
-                return send_file("datos/resultados.csv", as_attachment=True)
-
-    return render_template("XGBoost.html", tabla=tabla)
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
- 
+    return render_template("diabetes.html", resultado=resultado, datos=datos_nuevos.to_dict(orient="records")[0])
