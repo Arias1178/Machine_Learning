@@ -445,7 +445,7 @@ def index():
 # Carga del modelo entrenado
 @app.route("/")
 def index():
-    return render_template("diabetes.html")
+    return render_template("XGBoost.html")
 
 @app.route("/predecir", methods=["POST"])
 def predecir():
@@ -463,3 +463,6 @@ def predecir():
     resultado = "Diabetes" if prediccion == 1 else "No Diabetes"
 
     return render_template("diabetes.html", resultado=resultado, datos=datos_nuevos.to_dict(orient="records")[0])
+
+if __name__ == '__main__':
+  app.run(debug=True) 
