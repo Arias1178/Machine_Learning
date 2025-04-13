@@ -7,7 +7,7 @@ import regrecionlineal
 #import pyodbc
 import os
 
-
+EXCEL_PATH = 'resultados_diabetes.xlsx'
 app = Flask(__name__)
 
 
@@ -413,6 +413,7 @@ def infoNaiveBayes ():
 #Regresión Logística
 # Cargar modelo 6
 model = joblib.load('modelo_fraude.pkl')
+historial = [] #guardar el historial de predicciones
 
 @app.route('/Sigmoid', methods=['GET', 'POST'])
 def sigmoidvista():
@@ -461,8 +462,36 @@ def predecir():
 
     prediccion = modelo.predict(datos_nuevos)[0]
     resultado = "Diabetes" if prediccion == 1 else "No Diabetes"
+    
+    
+    registro = {
+        'Glucosa': glucosa,
+        'Edad': edad,
+        'IMC': imc,
+        'Resultado': resultado,
+        'Fecha': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+    historial.append(registro)
 
-    return render_template("diabetes.html", resultado=resultado, datos=datos_nuevos.to_dict(orient="records")[0])
+    return render_template("diabetes.html", resultado=resultado, historial=historial, datos=datos_nuevos.to_dict(orient="records")[0])
+
+@app.route('/resultados')
+def resultados():
+    if not os.path.exists(EXCEL_PATH):
+        return "No hay resultados aún."
+    df = pd.read_excel(EXCEL_PATH)
+    return render_template('resultados.html', tabla=df.to_dict(orient='records'))
+
+@app.route('/exportar')
+def exportar():
+    if not historial:
+        return "No hay datos para exportar."
+
+    df = pd.DataFrame(historial)
+    ruta_archivo = 'resultados_diabetes.xlsx'
+    df.to_excel(ruta_archivo, index=False)
+
+    return send_file(ruta_archivo, as_attachment=True)
 
 if __name__ == '__main__':
   app.run(debug=True) 

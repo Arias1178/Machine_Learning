@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial de Resultados</title>
+    <style>
+        table, th, td { border: 1px solid #ccc; border-collapse: collapse; padding: 8px; }
+        table { margin-top: 20px; width: 100%; }
+        body { font-family: Arial; padding: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Historial de Resultados</h1>
+    {% if tabla %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Glucosa</th>
+                    <th>Edad</th>
+                    <th>IMC</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in tabla %}
+                <tr>
+                    <td>{{ fila.Fecha }}</td>
+                    <td>{{ fila.Glucosa }}</td>
+                    <td>{{ fila.Edad }}</td>
+                    <td>{{ fila.IMC }}</td>
+                    <td>{{ fila.Resultado }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="/exportar"> Descargar Excel</a>
+    {% else %}
+        <p>No hay datos disponibles.</p>
+    {% endif %}
+    <br><br>
+    <a href="/"> Volver al formulario</a>
+</body>
+</html>
