@@ -12,12 +12,12 @@ app = Flask(__name__)
 
 
 # Configuración de conexión
-server = 'ModelosClasificacion.mssql.somee.com'
-database = 'ModelosClasificacion'
-username = 'isaVargas_SQLLogin_1'
-password = 'djz3g2kkhk'
-driver = '{ODBC Driver 17 for SQL Server}'
-connection_string = f'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}'
+#server = 'ModelosClasificacion.mssql.somee.com'
+#database = 'ModelosClasificacion'
+#username = 'isaVargas_SQLLogin_1'
+#password = 'djz3g2kkhk'
+#driver = '{ODBC Driver 17 for SQL Server}'
+#connection_string = f'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 
 
 
@@ -415,7 +415,7 @@ def infoNaiveBayes ():
 model = joblib.load('modelo_fraude.pkl')
 
 @app.route('/Sigmoid', methods=['GET', 'POST'])
-def index():
+def sigmoidvista():
     prediction = None
     if request.method == 'POST':
         # Obtener datos del formulario
@@ -438,25 +438,25 @@ def index():
     return render_template('RegresionLogistica.html', prediction=prediction)
 
 
-#if __name__ == '__main__':
- #   app.run(debug=True) 
 
 #XGBoost 8
 # Carga del modelo entrenado
-@app.route("/")
-def index():
-    return render_template("XGBoost.html")
+@app.route("/xgboost")
+def xgmodelo():
+   return render_template("XGBoost.html")
 
 @app.route("/predecir", methods=["POST"])
 def predecir():
+    
     glucosa = float(request.form["glucosa"])
     edad = int(request.form["edad"])
     imc = float(request.form["imc"])
+    modelo = joblib.load("modelo_diabetes.pkl")
 
     datos_nuevos = pd.DataFrame([{
-        "Glucosa": glucosa,
-        "Edad": edad,
-        "IMC": imc
+        "Glucose": glucosa,
+        "Age": edad,
+        "BMI": imc
     }])
 
     prediccion = modelo.predict(datos_nuevos)[0]
