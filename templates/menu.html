@@ -16,25 +16,16 @@
             <li><a href="{{ url_for('mapaHTML') }}" data-item="Mapa Conceptual">Mapa Conceptual</a></li>
             <li><a href="{{ url_for('regrecionlineal_endpoint') }}" data-item="Regresión Lineal">Regresión Lineal</a></li>
             <li>
-                <a href="{{ url_for('index') }}" data-item="Regresión Logistica">Regresión Logistica</a>
+                <a href="{{ url_for('sigmoidvista') }}" data-item="Regresión Logistica">Regresión Logistica</a>
                 <select id="opciones" onchange="redirigir()">
                     <option disabled selected>Selecciona una opción</option>
-<<<<<<< HEAD
-                    <option value="{{ url_for('infoRegresionLogistica') }}">Regresion Logistica</option>
-                    <option value="{{ url_for('infoKNN') }}">KNN</option>
-                    <option value="{{ url_for('infoArbolesDecision') }}">Arbol Decisiones</option>
-                    <option value="{{ url_for('infoRandomForest') }}">Random Forest</option>
-                    <option value="{{ url_for('infoSVM') }}">SVM</option>
-                    <option value="{{ url_for('infoXGBoost') }}">XGBoost</option>
-                    <option value="{{ url_for('infoAdaBoost') }}">AdaBoost </option>
-                    <option value="{{ url_for('infoNaiveBayes') }}">Naive Bayes</option>
-=======
                     <option value="{{ url_for('exampleHTML') }}">Opción 1 - Casos de Uso</option>
                     <option value="{{ url_for('mapaHTML') }}">Opción 2 - Mapa Conceptual</option>
                     <option value="{{ url_for('regrecionlineal_endpoint') }}">Opción 3 - Regresión Lineal</option>
->>>>>>> 3a13c5c01b5b29c8d8b17bbb50a9738a17713c06
                 </select>
             </li>
+            <li><a href="{{ url_for('xgmodelo') }}" data-item="XGBoost">XGBoost</a></li>
+            <li><a href="{{ url_for('resultados') }}" data-item="Historial de Resultados">Historial de Resultados</a></li>
         </ul>
     </nav>
 

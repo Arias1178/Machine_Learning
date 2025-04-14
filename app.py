@@ -7,17 +7,17 @@ import regrecionlineal
 #import pyodbc
 import os
 
-
+EXCEL_PATH = 'resultados_diabetes.xlsx'
 app = Flask(__name__)
 
 
 # Configuración de conexión
-server = 'ModelosClasificacion.mssql.somee.com'
-database = 'ModelosClasificacion'
-username = 'isaVargas_SQLLogin_1'
-password = 'djz3g2kkhk'
-driver = '{ODBC Driver 17 for SQL Server}'
-connection_string = f'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}'
+#server = 'ModelosClasificacion.mssql.somee.com'
+#database = 'ModelosClasificacion'
+#username = 'isaVargas_SQLLogin_1'
+#password = 'djz3g2kkhk'
+#driver = '{ODBC Driver 17 for SQL Server}'
+#connection_string = f'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}'
 
 
 
@@ -413,9 +413,10 @@ def infoNaiveBayes ():
 #Regresión Logística
 # Cargar modelo 6
 model = joblib.load('modelo_fraude.pkl')
+historial = [] #guardar el historial de predicciones
 
 @app.route('/Sigmoid', methods=['GET', 'POST'])
-def index():
+def sigmoidvista():
     prediction = None
     if request.method == 'POST':
         # Obtener datos del formulario
@@ -438,31 +439,59 @@ def index():
     return render_template('RegresionLogistica.html', prediction=prediction)
 
 
-#if __name__ == '__main__':
- #   app.run(debug=True) 
 
 #XGBoost 8
 # Carga del modelo entrenado
-@app.route("/")
-def index():
-    return render_template("XGBoost.html")
+@app.route("/xgboost")
+def xgmodelo():
+   return render_template("XGBoost.html")
 
 @app.route("/predecir", methods=["POST"])
 def predecir():
+    
     glucosa = float(request.form["glucosa"])
     edad = int(request.form["edad"])
     imc = float(request.form["imc"])
+    modelo = joblib.load("modelo_diabetes.pkl")
 
     datos_nuevos = pd.DataFrame([{
-        "Glucosa": glucosa,
-        "Edad": edad,
-        "IMC": imc
+        "Glucose": glucosa,
+        "Age": edad,
+        "BMI": imc
     }])
 
     prediccion = modelo.predict(datos_nuevos)[0]
     resultado = "Diabetes" if prediccion == 1 else "No Diabetes"
+    
+    
+    registro = {
+        'Glucosa': glucosa,
+        'Edad': edad,
+        'IMC': imc,
+        'Resultado': resultado,
+        'Fecha': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+    historial.append(registro)
 
-    return render_template("diabetes.html", resultado=resultado, datos=datos_nuevos.to_dict(orient="records")[0])
+    return render_template("diabetes.html", resultado=resultado, historial=historial, datos=datos_nuevos.to_dict(orient="records")[0])
+
+@app.route('/resultados')
+def resultados():
+    if not os.path.exists(EXCEL_PATH):
+        return "No hay resultados aún."
+    df = pd.read_excel(EXCEL_PATH)
+    return render_template('resultados.html', tabla=df.to_dict(orient='records'))
+
+@app.route('/exportar')
+def exportar():
+    if not historial:
+        return "No hay datos para exportar."
+
+    df = pd.DataFrame(historial)
+    ruta_archivo = 'resultados_diabetes.xlsx'
+    df.to_excel(ruta_archivo, index=False)
+
+    return send_file(ruta_archivo, as_attachment=True)
 
 if __name__ == '__main__':
   app.run(debug=True) 

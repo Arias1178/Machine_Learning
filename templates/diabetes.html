@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+    <meta charset="UTF-8">
+    <title>Predicción de Diabetes</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        table, th, td { border: 1px solid #ccc; border-collapse: collapse; padding: 8px; }
+        table { margin-top: 20px; width: 100%; }
+        .resultado { font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+
+<body>
+    <a href="{{ url_for('menu_formulario') }}" style="display:inline-block; margin-bottom: 20px; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">
+         Volver al menu principal
+    </a>
+    <h1>Predicción de Diabetes</h1>
+
+    <form action="/predecir" method="POST">
+        <label>Glucosa:</label>
+        <input type="number" name="glucosa" step="any" required><br><br>
+
+        <label>Edad:</label>
+        <input type="number" name="edad" step="any" required><br><br>
+
+        <label>IMC:</label>
+        <input type="number" name="imc" step="any" required><br><br>
+
+        <button type="submit">Predecir</button>
+    </form>
+
+    {% if resultado %}
+        <div class="resultado">Resultado: {{ resultado }}</div>
+    {% endif %}
+
+    {% if historial %}
+        <h2>Historial de predicciones</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Glucosa</th>
+                    <th>Edad</th>
+                    <th>IMC</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in historial %}
+                <tr>
+                    <td>{{ fila.Fecha }}</td>
+                    <td>{{ fila.Glucosa }}</td>
+                    <td>{{ fila.Edad }}</td>
+                    <td>{{ fila.IMC }}</td>
+                    <td>{{ fila.Resultado }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/exportar"> Exportar a Excel</a>
+    {% endif %}
+ 
+</body>
+</html>
